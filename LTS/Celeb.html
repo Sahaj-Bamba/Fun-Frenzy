@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Listen Think Shout!</title>
+
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="links.css">
+	<link rel="stylesheet" type="text/css" href="home.css">
+
+ 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="Home2.css">
+	<link rel="stylesheet" type="text/css" href="celeb.css">
+<script>
+
+	$(document).ready(function(){
+	    $(".Image").hover(function(){
+	        $(this).children(".Label").slideDown(1000);
+	    } , 
+
+	    function(){
+	        $(this).children(".Label").slideUp(2000);
+	    }
+	    );
+
+});
+</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var TP=0;
+			$(".tag").hover(function(){
+	        $(this).children(".image").css("display","none");
+	        $(this).children(".image2").css("display","inline-block");
+	    	} , 
+
+	    function(){
+	        $(this).children(".image2").css("display","none");
+	        $(this).children(".image").css("display","inline-block");
+	    	}
+	    );
+
+			$(".menu_item").hover(function(){
+				$(this).css("background-color","#fff");
+			},
+			function(){
+				$(this).css("background-color","#f3f3f3");
+				//console.log("hell");
+			});
+
+
+		$(".menu_button").click( function () {
+			TP++;
+			$(".menu").slideToggle();
+			$(this).css("background-image","url('menu"+(TP%2+1)+".jpg')");
+			//console.log("uhui");
+		});
+
+		});
+
+	</script>
+
+
+
+<!-- Adding script to detect swipe               -->
+
+<script type="text/javascript">
+
+/*        touch                     */
+
+
+function swipedetect(el, callback){
+  
+    var touchsurface = el,
+    swipedir,
+    startX,
+    startY,
+    distX,
+    distY,
+    threshold = 100, //required min distance traveled to be considered swipe
+    restraint = 100, // maximum distance allowed at the same time in perpendicular direction
+    allowedTime = 1500, // maximum time allowed to travel that distance
+    clicklength=60,	// point till which screen can be clicked
+    elapsedTime,
+    startTime,
+    clickTime= 2000,
+    handleswipe = callback || function(swipedir){}
+
+  
+    touchsurface.addEventListener('touchstart', function(e){
+        var touchobj = e.changedTouches[0]
+        swipedir = 'none'
+        dist = 0
+        startX = touchobj.pageX
+        startY = touchobj.pageY
+        startTime = new Date().getTime() // record time when finger first makes contact with surface
+        e.preventDefault()
+    }, false)
+  
+
+    touchsurface.addEventListener('touchend', function(e){
+        var touchobj = e.changedTouches[0]
+        distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
+        distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
+        elapsedTime = new Date().getTime() - startTime // get time elapsed
+        if (window.innerWidth>600) {
+        	clicklength=140;
+        }
+        if (elapsedTime <= allowedTime){ // first condition for awipe met
+            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
+                swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
+            }
+            else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
+                swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+            }
+            else if (startX<clicklength) {
+            	swipedir='clickleft'
+            }
+            else if (window.innerWidth-clicklength < startX) {
+            	swipedir='clickright'
+            }
+            else{
+            	swipedir = 'click'
+            } 
+
+        }
+        else if (elapsedTime <= clickTime ) {
+        	swipedir = 'click'
+        }
+        handleswipe(swipedir)
+        e.preventDefault()
+    }, false)
+}
+
+
+
+/*
+
+touch detection function usage 
+
+*/
+
+
+/*
+window.addEventListener('load', function(){
+    var el = document.getElementById('celeb1')
+    var e2 = document.getElementById('celeb2')
+    var e3 = document.getElementById('celeb3')
+
+
+    var qwertyflag1=0;
+    var qwertyflag2=0;
+    swipedetect(el, function(swipedir){
+        if (swipedir == 'right'){
+            
+	    	$("#celeb"+(x%3+1)).fadeOut(500);
+	    	$("#"+(x%3+1)).css("background-color", "#BBB"	);
+	    	x++;
+	    	$("#celeb"+(x%3+1)).fadeIn(500);
+	    	$("#"+(x%3+1)).css("background-color", "blue"	);
+//	    	console.log(x);
+	    	t=0;
+	    	f=0;
+	    }
+        else if (swipedir == 'left') {
+        	
+        	
+	    	$("#celeb"+(x%3+1)).fadeOut(500);
+	    	$("#"+(x%3+1)).css("background-color", "#BBB"	);
+	    	x--;
+
+	    	$("#celeb"+(x%3+1)).fadeIn(500);
+	    	$("#"+(x%3+1)).css("background-color", "blue"	);
+//	    	console.log(x);
+	    	t=0;
+	    	f=0;
+	    
+        }
+       
+
+    })
+        swipedetect(e2, function(swipedir){
+        if (swipedir == 'right'){
+            
+	    	$("#celeb"+(x%3+1)).fadeOut(500);
+	    	$("#"+(x%3+1)).css("background-color", "#BBB"	);
+	    	x++;
+	    	$("#celeb"+(x%3+1)).fadeIn(500);
+	    	$("#"+(x%3+1)).css("background-color", "blue"	);
+//	    	console.log(x);
+	    	t=0;
+	    	f=0;
+	    }
+        else if (swipedir == 'left') {
+        	
+        	
+	    	$("#celeb"+(x%3+1)).fadeOut(500);
+	    	$("#"+(x%3+1)).css("background-color", "#BBB"	);
+	    	x--;
+
+	    	$("#celeb"+(x%3+1)).fadeIn(500);
+	    	$("#"+(x%3+1)).css("background-color", "blue"	);
+//	    	console.log(x);
+	    	t=0;
+	    	f=0;
+	    
+        }
+        else if (swipedir == 'up' ) {
+        	if (qwertyflag1%2==0) {
+        		($("#celeb"+(x%3+1)).css('height',(parseInt(($("#celeb"+(x%3+1)).css('height'))[0]+($("#celeb"+(x%3+1)).css('height'))[1]+($("#celeb"+(x%3+1)).css('height'))[2])+100)+'px'));
+        		$("#celeb"+(x%3+1)).css('top','-100px');
+        		qwertyflag1++;
+        	}
+        }
+        else if (swipedir == 'down' ) {
+        	if (qwertyflag1%2!=0) {
+        	($("#celeb"+(x%3+1)).css('height',(parseInt(($("#celeb"+(x%3+1)).css('height'))[0]+($("#celeb"+(x%3+1)).css('height'))[1]+($("#celeb"+(x%3+1)).css('height'))[2])-100)+'px'));
+        	$("#celeb"+(x%3+1)).css('top','0px');
+        	qwertyflag1++;
+        }
+    }
+})
+                swipedetect(e3, function(swipedir){
+        if (swipedir == 'right'){
+            
+	    	$("#celeb"+(x%3+1)).fadeOut(500);
+	    	$("#"+(x%3+1)).css("background-color", "#BBB"	);
+	    	x++;
+	    	$("#celeb"+(x%3+1)).fadeIn(500);
+	    	$("#"+(x%3+1)).css("background-color", "blue"	);
+//	    	console.log(x);
+	    	t=0;
+	    	f=0;
+	    }
+        else if (swipedir == 'left') {
+        	
+        	
+	    	$("#celeb"+(x%3+1)).fadeOut(500);
+	    	$("#"+(x%3+1)).css("background-color", "#BBB"	);
+	    	x+=2;
+
+	    	$("#celeb"+(x%3+1)).fadeIn(500);
+	    	$("#"+(x%3+1)).css("background-color", "blue"	);
+//	    	console.log(x);
+	    	t=0;
+	    	f=0;
+	    
+        }
+
+
+        else if (swipedir == 'up' ) {
+        	if (qwertyflag2%2==0) {
+        		($("#celeb"+(x%3+1)).css('height',(parseInt(($("#celeb"+(x%3+1)).css('height'))[0]+($("#celeb"+(x%3+1)).css('height'))[1]+($("#celeb"+(x%3+1)).css('height'))[2])+100)+'px'));
+        		$("#celeb"+(x%3+1)).css('top','-100px');
+        		qwertyflag2++;
+        	}
+        }
+        else if (swipedir == 'down' ) {
+        	if (qwertyflag2%2!=0) {
+        	($("#celeb"+(x%3+1)).css('height',(parseInt(($("#celeb"+(x%3+1)).css('height'))[0]+($("#celeb"+(x%3+1)).css('height'))[1]+($("#celeb"+(x%3+1)).css('height'))[2])-100)+'px'));
+        	$("#celeb"+(x%3+1)).css('top','0px');
+        	qwertyflag2++;
+        }
+    }
+})
+
+
+})
+*/
+
+
+</script>
+
+
+
+
+<!--		enlargement on click effect  			-->
+
+
+<script type="text/javascript">
+	
+
+
+	$(document).ready(function(){
+		$(".Image").click(function(){
+			$(".enlarged").css("display","block");
+			$("#celeb1").css("display","none");
+			$("#celeb2").css("display","none");
+			$("#celeb3").css("display","none");
+			$(".enlarged").children(".special").html($(this).children(".Label").html());
+			$(".enlarged").children(".enlarged_img").css( "background-image",$(this).children(".Image2").css("background-image"));			
+			var imge=$(this).children(".Image2").css("background-image");
+
+
+//			add swipe and click to change effect
+
+
+var io = document.getElementsByClassName("Image2");
+var i;
+for (i = 0; i < io.length; i++) {
+    console.log(io[i].style.margin );
+}
+
+
+
+
+
+			
+			//console.log((.substring(($(this).children(".Image2").css("background-image")).split("").reverse().join("").indexof(".")+1,($(this).children(".Image2").css("background-image")).split("").reverse().join("").indexof("/"))).split("").reverse().join(""));
+
+names_celeb = [ "Mika Singh",
+			  "Mohit Chauhan",
+			  "KK",
+			  "Ankit Tiwari",
+			  "Sunidhi Chauhan",
+			  "Shirley Setia",
+			  "Suraj Jagan",
+			  "Javed Ali",
+			  "Jasmine Sandlas",
+			  "Neha Kakkar",
+			  "Gajendra Verma",
+			  "Rashami Desai",
+			  "Mouni Roy",
+			  "Ankita Lokhande",
+			  "Krystle D'souza",
+			  "Ada Khan",
+			  "Pooja Banerjee",
+			  "Dalljiet Kaur",
+			  "Sneha Ullal",
+			  "Preeti Jhangiani",
+			  "Madalsa Sharma",
+			  "Shiny Doshi",
+			  "Parul Chauhan",
+			  "Ankita Sharma",
+			  "Neha Pendse",
+			  "Sreejita De",
+			  "Lavina Tandon",
+			  "Sonal Vebgurlekar",
+			  "Monica Bedi",
+			  "Aarti Chabria",
+			  "Mahek Chahal",
+			  "Karishma Kotak",
+			  "Vidhi Pandya",
+			  "Karanvir Bohra",
+			  "Arjun Bijlani",
+			  "Karan Tacker",
+			  "Aamir Ali",
+			  "Balraj Syal",
+			  "Pearl V Puri",
+			  "Amit Tandon",
+			  "Gaurav Bajaj",
+			  "Manu Punjabi",
+			  "Eijaz Khan",
+			  "Ashmit Patel",
+			  "Shivin Narang",
+			  "Kripp Kapur Suri",
+			  "Avinash Mukherjee",
+			  "Kunal Vohra"
+
+
+
+			   ];
+
+    var e3 = document.getElementById('enl');
+
+			xi=imge.split("").reverse().join("");
+			yi=xi.indexOf(".")+1;
+			zi=xi.indexOf("/");
+			wi=xi.substring(yi,zi);
+			pi=parseInt(wi.split("").reverse().join(""));
+			console.log(pi);
+ qi=xi.substring(0,yi)+pi.toString().split("").reverse().join("")+xi.substring(zi,xi.length);
+//console.log(q.split("").reverse().join(""));
+    swipedetect(e3, function(swipedir){
+    	var q;
+    	console.log(swipedir);
+        if (swipedir == 'right'||swipedir == 'clickleft'){
+            pi--;
+	    	if (pi<1) {
+	    		pi=48;
+	    	}
+	    	 q=xi.substring(0,yi)+pi.toString().split("").reverse().join("")+xi.substring(zi,xi.length);
+	    	 console.log(q);
+	    	 $(".enlarged").children(".enlarged_img").css("background-image",q.split("").reverse().join(""));
+	    	 $(".enlarged").children(".special").html(names_celeb[pi-1]);
+	    }
+        else if (swipedir == 'left'||swipedir == 'clickright') {
+        	pi++;
+        	if(pi>48)
+        		pi=1;
+	    	 q=xi.substring(0,yi)+pi.toString().split("").reverse().join("")+xi.substring(zi,xi.length);
+	    	 console.log(q);
+	    	 $(".enlarged_img").css("background-image",q.split("").reverse().join(""));
+	    	 $(".enlarged").children(".special").html(names_celeb[pi-1]);
+        }
+        else if (swipedir == 'click') {
+        		$(".enlarged").css("display","none");
+        		$("#celeb1").css("display","block");
+				$("#celeb2").css("display","block");
+				$("#celeb3").css("display","block");
+			
+        }
+    })
+});
+
+
+
+
+
+//  onclick function to change image
+
+
+$(".leftarrow").click(function(){
+		var q;
+        	pi--;
+        	if(pi<1)
+        		pi=48;
+	    	 q=xi.substring(0,yi)+pi.toString().split("").reverse().join("")+xi.substring(zi,xi.length);
+	    	 console.log(q);
+	    	 $(".enlarged_img").css("background-image",q.split("").reverse().join(""));
+	    	 $(".enlarged").children(".special").html(names_celeb[pi-1]);
+	    	 console.log(names_celeb[pi-1]);
+    
+});
+$(".rightarrow").click(function(){
+		var q;
+        	pi++;
+        	if(pi>48)
+        		pi=1;
+	    	 q=xi.substring(0,yi)+pi.toString().split("").reverse().join("")+xi.substring(zi,xi.length);
+	    	 console.log(q);
+	    	 $(".enlarged_img").css("background-image",q.split("").reverse().join(""));
+	    	 $(".enlarged").children(".special").html(names_celeb[pi-1]);
+    
+});
+$(".enlarged_img").click(function(){
+	    		$(".enlarged").css("display","none");
+        		$("#celeb1").css("display","block");
+				$("#celeb2").css("display","block");
+				$("#celeb3").css("display","block");
+	
+});
+
+
+
+
+
+
+});
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body style="height: 99%; width: 99%; background-color: #f3f3f3;">
+
+	<div class="header" >
+		<div class="Imagex" style=" background-image: url(logos/logo.svg); ">	
+		</div>
+
+		<div class="menu_button">
+			
+		</div>
+
+		<div class="menu" >
+			<div class="menu_item">
+		        <a href="index.html"> HOME </a> 
+		    </div>
+		    <div class="menu_item" >
+		        <a href="About.html"> ABOUT </a> 
+		    </div>
+		    <div class="menu_item">
+		        <a href="Services.html"> SERVICES </a>
+		    </div>
+		    <div class="menu_item">
+		    	<a href="Celeb.html"> CELEBRITY </a>
+		    </div>
+		    <div class="menu_item">
+		        <a href="Portfolio.html"> PORTFOLIO </a>
+		    </div>
+		    <div class="menu_item" >
+		        <a href="Blog.html"> BLOG </a>
+		    </div>
+		    <div class="menu_item" >
+		        <a href="Contact.html"> CONTACT </a>
+		    </div>
+		</div>
+	</div>
+
+	<div class="main" >
+<div class="back1"></div>
+
+	<div class="pointer" style="display: none;">
+  		
+  		<span class="dot" id="1">
+  			<input style="display: none" name="articleid" type="hidden" value=1 />
+  		</span>
+  		<span class="dot" id="2">
+  			<input style="display: none" name="articleid" type="hidden" value=2 />
+  		</span>
+ 		<span class="dot" id="3">
+ 			<input style="display: none" name="articleid" type="hidden" value=3 />
+ 		</span>
+
+  	</div>
+  	<div class="enlarged" id="enl">
+  		<div class="special" style="text-align: center;">	</div>
+  		<div class="enlarged_img">  			</div>
+  		<div class="leftarrow"> </div>
+  		<div class="rightarrow"> </div>
+
+  	</div>
+  	<div id="celeb1" >
+  	<span class="special" > SINGERS<span class="spil"><br><br></span></span>  		
+  		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/1.jpg');"></div>
+			<div class="Label">
+				Mika Singh
+			</div>
+		</div>
+  		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/2.jpg');"></div>
+			<div class="Label">
+				Mohit Chauhan
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/3.jpg');"></div>
+			<div class="Label">
+				KK
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/4.jpg');"></div>
+			<div class="Label">
+				Ankit Tiwari
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/5.jpg');"></div>
+			<div class="Label">
+				Sunidhi Chauhan
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/6.jpg');"></div>
+			<div class="Label">
+				Shirley Setia
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/7.jpg');"></div>
+			<div class="Label">
+				Suraj Jagan
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/8.jpg');"></div>
+			<div class="Label">
+				Javed Ali
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/9.jpg');"></div>
+			<div class="Label">
+				Jasmine Sandlas
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/10.jpg');"></div>
+			<div class="Label">
+				Neha Kakkar
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/11.jpg');"></div>
+			<div class="Label">
+				Gajendra Verma
+			</div>
+		</div>
+  	</div>
+    <div id="celeb2" >
+  		<span class="special"> Exclusive TV Celebrity - Female <span class="spil"><br><br></span></span>
+  		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/12.jpg');"></div>
+			<div class="Label">
+				Rashami Desai
+			</div>
+		</div>
+  		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/13.jpg');"></div>
+			<div class="Label">
+				Mouni Roy
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/14.jpg');"></div>
+			<div class="Label">
+				Ankita Lokhande
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/15.jpg');"></div>
+			<div class="Label">
+				Krystle D'souza
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/16.jpg');"></div>
+			<div class="Label">
+				Ada Khan
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/17.jpg');"></div>
+			<div class="Label">
+				Pooja Banerjee
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/18.jpg');"></div>
+			<div class="Label">
+				Dalljiet Kaur
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/19.jpg');"></div>
+			<div class="Label">
+				Sneha Ullal
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/20.jpg');"></div>
+			<div class="Label">
+				Preeti Jhangiani
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/21.jpg');"></div>
+			<div class="Label">
+				Madalsa Sharma
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/22.jpg');"></div>
+			<div class="Label">
+				Shiny Doshi
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/23.jpg');"></div>
+			<div class="Label">
+				Parul Chauhan
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/24.jpg');"></div>
+			<div class="Label">
+				Ankita Sharma
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/25.jpg');"></div>
+			<div class="Label">
+				Neha Pendse
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/26.jpg');"></div>
+			<div class="Label">
+				Sreejita De
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/27.jpg');"></div>
+			<div class="Label">
+				Lavina Tandon
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/28.jpg');"></div>
+			<div class="Label">
+				Sonal Vebgurlekar
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/29.jpg');"></div>
+			<div class="Label">
+				Monica Bedi
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/30.jpg');"></div>
+			<div class="Label">
+				Aarti Chabria
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/31.jpg');"></div>
+			<div class="Label">
+				Mahek Chahal
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/32.jpg');"></div>
+			<div class="Label">
+				Karishma Kotak
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/33.jpg');"></div>
+			<div class="Label">
+				Vidhi Pandya
+			</div>
+		</div>
+	</div>
+
+  	<div id="celeb3" >
+  		<span class="special"> Exclusive TV Celebrity - Male<span class="spil"><br><br> </span></span>
+  		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/34.jpg');"></div>
+			<div class="Label">
+				Karanvir Bohra
+			</div>
+		</div>
+  		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/35.jpg');"></div>
+			<div class="Label">
+				Arjun Bijlani
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/36.jpg');"></div>
+			<div class="Label">
+				Karan Tacker
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/37.jpg');"></div>
+			<div class="Label">
+				Aamir Ali
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/38.jpg');"></div>
+			<div class="Label">
+				Balraj Syal
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/39.jpg');"></div>
+			<div class="Label">
+				Pearl V Puri
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/40.jpg');"></div>
+			<div class="Label">
+				Amit Tandon
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/41.jpg');"></div>
+			<div class="Label">
+				Gaurav Bajaj
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/42.jpg');"></div>
+			<div class="Label">
+				Manu Punjabi
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/43.jpg');"></div>
+			<div class="Label">
+				Eijaz Khan
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/44.jpg');"></div>
+			<div class="Label">
+				Ashmit Patel
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/45.jpg');"></div>
+			<div class="Label">
+				Shivin Narang
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/46.jpg');"></div>
+			<div class="Label">
+				Kripp Kapur Suri
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/47.jpg');"></div>
+			<div class="Label">
+				Avinash Mukherjee
+			</div>
+		</div>
+		<div class="Image">
+			<div class="Image2" style="background-image: url('celeb/48.jpg');"></div>
+			<div class="Label">
+				Kunal Vohra
+			</div>
+		</div>
+  	</div>
+  	<div id="complete" >
+  		
+  	</div>
+</div>
+
+	<div class="footer" >
+				<div class="txt">
+					Copyright © 2017<br> Design by ListenThinkShout Communications	
+				</div>
+				<div class="social" >
+				<div class="tag" >
+				<div class="image" style=" border: solid 0px red; background-image: url('logos/fb.jpg');" >
+				</div>
+				<div class="image2" style=" border: solid 0px red; background-image: url('logos/fb2.jpg');">
+				</div>
+				</div>
+				<div class="tag" >
+				<div class="image" style="background-image: url('logos/twitter.jpg'); " >
+				</div>
+				<div class="image2" style=" border: solid 0px red; background-image: url('logos/twitter2.jpg'); ">
+				</div>
+				</div>
+				<div class="tag" >
+				<div class="image" style=" border: solid 0px red; background-image: url('logos/instagram.png'); " >
+				</div>
+				<div class="image2" style=" border: solid 0px red; background-image: url('logos/instagram2.png'); ">
+				</div>
+				</div>
+				<div class="tag" >
+				<div class="image" style=" border: solid 0px red; background-image: url('logos/youtube.png'); " >
+				</div>
+				<div class="image2" style=" border: solid 0px red; background-image: url('logos/youtube2.png'); ">
+				</div>
+				</div>
+			</div>
+	</div>	
+	<div id="footerf" ></div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

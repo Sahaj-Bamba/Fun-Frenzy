@@ -1,0 +1,199 @@
+.Image{
+	display: block;
+	border: solid 0px red;
+	position: relative;
+	background-color: white;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+
+@media screen and (max-width: 550px){
+
+	.abtspecial{
+		display: block;
+		text-align: center;
+		font-size: 1.2em;
+	}
+
+	.abtcontent{
+		display: block;
+		position: relative;
+		background-color: #fff;
+		height: auto;
+		min-height: 100%;
+		text-align: center;
+		overflow: auto;
+	}
+
+	.abtimg1{
+		display: block;
+		position: relative;
+		top: 30px;
+		background-repeat: no-repeat;
+		width: 300px;
+		height: 100px;
+		background-size: 100%;
+		border: solid 0px blue;
+		background-color: #fff;
+		align-self: center;
+		text-align: center;
+	}
+
+	.abtimg2{
+		display: block;
+		position: relative;
+		top: 60px;
+		background-repeat: no-repeat;
+		width: 300px;
+		height: 180px;
+		background-size: auto 100%;
+		text-align: center;
+		align-self: center;
+		right: 30px;
+		border: solid 0px blue;
+		background-color: #fff;
+	}
+
+	.abttxt{
+		display: block;
+		position: relative;
+		top: 40px;
+		border: solid 0px red;
+		background-color: #fff;
+		font-size: 0.8em;
+		width: 300px;
+		height: auto;
+		text-align: left;
+	}
+
+}
+
+
+@media screen and (min-width: 550px){
+
+	.abtspecial{
+		display: block;
+		text-align: center;
+		font-size: 1.5em;
+	}
+
+	.abtcontent{
+		display: block;
+		position: relative;
+		background-color: #fff;
+		height: auto;
+		min-height: 100%;
+		text-align: center;
+		overflow: auto;
+	}
+
+	.abtimg1{
+		display: block;
+		position: relative;
+		top: 30px;
+		background-repeat: no-repeat;
+		width: 600px;
+		height: 170px;
+		background-size: 100%;
+		border: solid 0px blue;
+		background-color: #fff;
+		align-self: center;
+		text-align: center;
+	}
+
+	.abtimg2{
+		display: block;
+		position: relative;
+		top: 60px;
+		background-repeat: no-repeat;
+		width: 600px;
+		height: 300px;
+		background-size: auto 100%;
+		text-align: center;
+		align-self: center;
+		border: solid 0px blue;
+		background-color: #fff;
+	}
+
+	.abttxt{
+		display: block;
+		position: relative;
+		top: 40px;
+		border: solid 0px red;
+		background-color: #fff;
+		font-size: 1.1em;
+		width: 600px;
+		height: auto;
+		text-align: left;
+	}
+
+}
+
+
+
+
+@media screen and (min-width: 900px){
+
+	.abtcontent{
+		display: block;
+		position: relative;
+		background-color: #fff;
+		height: auto;
+		min-height: 100%;
+		text-align: center;
+		overflow: auto;
+	}
+
+	.abtimg1{
+		display: block;
+		position: relative;
+		top: 30px;
+		background-repeat: no-repeat;
+		width: 900px;
+		height: 300px;
+		background-size: 100%;
+		border: solid 0px blue;
+		background-color: #fff;
+		align-self: center;
+		text-align: center;
+	}
+
+	.abtimg2{
+		display: block;
+		position: relative;
+		top: 60px;
+		right: 100px;
+		background-repeat: no-repeat;
+		width: 900px;
+		height: 540px;
+		background-size: auto 100%;
+		text-align: center;
+		align-self: center;
+		border: solid 0px blue;
+		background-color: #fff;
+	}
+
+	.abttxt{
+		display: block;
+		position: relative;
+		top: 40px;
+		border: solid 0px red;
+		background-color: #fff;
+		font-size: 1.3em;
+		width: 900px;
+		height: auto;
+		text-align: left;
+	}
+
+	.abtspecial{
+		display: block;
+		text-align: center;
+		font-size: 1.8em;
+	}
+
+}
