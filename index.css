@@ -192,9 +192,9 @@
 	.middle3{
 		display: block;
 		position: absolute;
-		top: 1300px;
+		top: 1000px;
 		left: 0px;
-		height: 300px;
+		height: 150px;
 		width: 400px;
 	}
 	.pic7{
@@ -215,23 +215,33 @@
 		height: 300px;
 		overflow: hidden;
 	}
- 	.txt7{
- 		display: block;
- 		width: 200px;
- 		height: 150px;
- 		position: absolute;
- 		top: 24%;
- 		left: 0px;
- 	}
- 	.clock{
- 		display: block;
- 		width: 300px;
- 		height: 150px;
- 		position: absolute;
- 		top: 150px;
- 		left: 25px;
- 		border: solid 0px red;
- 	}
+	.txt7{
+		display: block;
+		width: 200px;
+		height: 150px;
+		position: absolute;
+		top: 24%;
+		left: 0px;
+	}
+	.clock{
+		display: block;
+		width: 300px;
+		height: 150px;
+		position: absolute;
+		top: 150px;
+		left: 25px;
+		border: solid 0px red;
+	}
+		
+	.bottom{
+		display: block;
+		position: absolute;
+		top: 1000px;
+		right: 0px;
+		width: 200px;
+		height: 300px;
+		overflow: hidden;
+	}
 
 }
 
@@ -436,9 +446,9 @@
 	.middle3{
 		display: block;
 		position: absolute;
-		top: 1050px;
+		top: 800px;
 		left: 0px;
-		height: 250px;
+		height: 125px;
 		width: 300px;
 	}
 	.pic7{
@@ -681,7 +691,7 @@
 		position: absolute;
 		top: 400px;
 		left: 150px;
-		height: 250px;
+		height: 125px;
 		width: 300px;
 	}
 	.pic7{
@@ -920,7 +930,7 @@
 		position: absolute;
 		top: 500px;
 		left: 200px;
-		height: 300px;
+		height: 150px;
 		width: 400px;
 	}
 	.pic7{
@@ -1159,7 +1169,7 @@
 		position: absolute;
 		top: 590px;
 		left: 250px;
-		height: 400px;
+		height: 200px;
 		width: 500px;
 	}
 	.pic7{
